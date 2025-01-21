@@ -3,21 +3,388 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Martinez Nursery</title>
+  <title>Arnauld Martinez Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <nav>
-        <ul>
-          <li><a href="index.html">Homepage</a></li>
-          <li><a href="resume.pdf">Resume</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="navbar-container">
+          <a href="index.html" class="nav-link" >Homepage</a>
+          <a href="resume.pdf" class="nav-link" >Resume</a>
+        </div>
     </nav>
   </header>
   <main>
+    <div class="photo-and-name">
+        <img src="profile_photo.png" alt="Arnauld Martinez photo" class="profile-photo">
+        <div class="name">
+            <h1>Arnauld Martinez</h1>
+            <h3>Computer Science | Artifical Intelligence</h3>
+        </div>
+    </div>
+
+    <hr class="main-line">
+
+    <div class="about-me-container">
+        <h2 class="about-me">About Me:</h2>
+        <p class="about-me-text">
+            Hi, welcome to my portfolio! My name is Arnauld Martinez, and I was born and raised in Southern California. I'm currently a third year student at Caltech studying Computer Science with an emphasis in artifical intelligence and robotics. 
+            <br>
+            <br>
+            Ever since I was young, I've had a passion for exploring the world and learning through projects and hobbies. I love integrating high-level concepts such as Machine Learning with low level hardware to create end-to-end simulations, robots, and concepts that bring my passions to life.
+            <br>
+            <br>
+            Outside of engineering, I love playing tennis, surfing the California coast, or skiing on local mountains. I hope you enjoy looking at my work!
+        </p>
+    </div>
+
+    <div class="project-1">
+        <div class="project-desc">
+            <h2>Autonomous Driving</h2>
+            <h2 class="year">2024</h2>
+        </div>
+
+        <div class="video-graph-container">
+            <div class="sac-video-container">
+                <video controls>
+                    <source src="autonomous_driving.mp4" type="video/mp4" class="sac-video">
+                </video>
+                <h2>
+                    Asymmetric soft actor-critic model results
+                    <br>
+                    in Trackmania (blue curve).
+                </h2>
+            </div>
+
+            <div class="sac-results-container">
+                <img src="sac_results.png" class="sac-results">
+                <h2>SAC model performance curves. <br> Benchmark model is shown in red.</h2>
+            </div>
+        </div>
+
+        <div class="project-exp">
+            <p class="exp">
+                During the fall term, I worked in a team of five to create a
+                machine learning model that autonomously controls and races a
+                Formula 1 car. Our benchmark was the soft actor-critic (SAC) learning 
+                algorithm used in Trackmania's RoboRace League. The learning curve
+                for the model is shown in red in the above figure.
+            </p>
+            <p class="exp">
+                In SAC, the actor learns to control the racecar while the agent 
+                gives the actor some environmental reward. We created an
+                asymmetric soft-actor critic model, where the actor is provided
+                a history of images taken using an on-board camera, while the critic
+                has access to privileged state information in addition to these images.
+                This eliminates the racecar's dependence on GPS, which is a limiting 
+                factor for high-speed autonomous cars. The model results are shown in blue.
+            </p>
+            <p class="exp">
+                Additionally, we utilized DINO to segment on-board images before
+                the agent processes them. This provides rich semantic data (such as depth or
+                velocity) to the actor, and enables the model to make better driving choices.
+                This model outperformed the benchmark model, as shown in green.
+            </p>
+            <p class="exp">
+                Here, we showed how a model trained using only visual input (blue line)
+                has a similar learning curve to existing models that use visual and GPS 
+                input (red line). In practice, however, GPS data is unreliable and is a
+                limiting factor for many existing driving algorithms. We further refine
+                our model to utilize DINO, and the resulting learning curve (green line),
+                which is trained on less information than our benchmark model, achieves
+                the <u>highest reward and fastest lap time</u>.
+            </p>
+        </div>
+
+        <div class="model-container">
+            <div class="actor-container">
+                <img src="actor.png" class="actor-img">
+                <h2>Architecture of the actor module</h2>
+            </div>
+            <div class="critic-container">
+                <img src="critic.png" class="critic-img">
+                <h2>Architecture of the critic module</h2>
+            </div>
+        </div>
+
+        <div class="github-box">
+            <img src="github.png" class="github-image">
+            <a href="https://github.com/arnauldmartinez/autonomous_racing">Github Link</a>
+        </div>
+    </div>
+
+    <div class="project-2">
+        <div class="project-desc">
+            <h2>x86 Compiler</h2>
+            <h2 class="year">2024</h2>
+        </div>
+
+        <div class="code-container">
+            <div class="code-box">
+                <pre class="noncompiled-code">
+                    <code>
+    (define (sum (x : Integer)) : Integer
+    (let (x-vec (vector x))
+        (let (one (vector 1))
+        (let (neg-one (vector (- 1)))
+            (if (= (vector-ref x-vec 0) 1)
+                (vector-ref one 0)
+                (+ x (sum (+ x (vector-ref neg-one 0)))))))))
+
+    (if (= (sum 3) 6)
+        42
+        777)
+                    </code>
+                </pre>
+                <p class="code-text">High-level program using <br> functions, vectors, and arithmetic</p>
+                <p class="code-text">Expected output: 42</p>
+            </div>
     
+            <div class="code-box">
+                <pre class="compiled-code">
+                    <code>
+    _block_1:
+        movq $42, %rax
+        jmp _main_conclusion
+
+    _block_2:
+        movq $777, %rax
+        jmp _main_conclusion
+
+    _main_start:
+        leaq _sum(%rip), %rcx
+        movq $3, %rdi
+        callq *%rcx
+        movq %rax, %rcx
+        cmpq $6, %rcx
+        je _block_1
+        jmp _block_2
+
+        .globl _main
+        .align 8
+
+    _main:
+        pushq %rbp
+        movq %rsp, %rbp
+        movq $65536, %rdi
+        movq $65536, %rsi
+        callq _initialize
+        movq _rootstack_begin(%rip), %r15
+        jmp _main_start
+
+    _main_conclusion:
+        popq %rbp
+        retq
+
+    _block_10:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_8
+
+    _block_11:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq %r14, 8(%r11)
+        movq $0, %rcx
+        movq %rdx, %r13
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_9
+        jmp _block_10
+
+    _block_12:
+        movq $0, %rcx
+        jmp _block_11
+
+    _block_13:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_11
+
+    _block_3:
+        movq %r12, %r11
+        movq 8(%r11), %rax
+        jmp _sum_conclusion
+
+    _block_4:
+        leaq _sum(%rip), %rsi
+        movq %rdx, %r11
+        movq 8(%r11), %rcx
+        movq %r14, %rdx
+        addq %rcx, %rdx
+        movq %rdx, %rdi
+        callq *%rsi
+        movq %rax, %rcx
+        movq %r14, %rax
+        addq %rcx, %rax
+        jmp _sum_conclusion
+
+    _block_5:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq %rbx, 8(%r11)
+        movq $0, %rcx
+        movq %r13, %r11
+        movq 8(%r11), %rcx
+        cmpq $1, %rcx
+        je _block_3
+        jmp _block_4
+
+    _block_6:
+        movq $0, %rcx
+        jmp _block_5
+
+    _block_7:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_5
+
+    _block_8:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq $1, 8(%r11)
+        movq $0, %rcx
+        movq %rdx, %r12
+        movq $1, %rbx
+        negq %rbx
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_6
+        jmp _block_7
+
+    _block_9:
+        movq $0, %rcx
+        jmp _block_8
+
+    _sum_start:
+        movq %rdi, %r14
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_12
+        jmp _block_13
+
+        .globl _sum
+        .align 8
+
+    _sum:
+        pushq %rbp
+        movq %rsp, %rbp
+        pushq %rbx
+        pushq %r12
+        pushq %r13
+        pushq %r14
+        jmp _sum_start
+
+    _sum_conclusion:
+        popq %r14
+        popq %r13
+        popq %r12
+        popq %rbx
+        popq %rbp
+        retq
+                    </code>
+                </pre>
+                <p class="code-text">Compiled x86 assembly code <br> (for ARM-based processors)</p>
+                <p class="code-text">Actual output: 42</p>
+            </div>
+        </div>
+
+        <div class="project-exp">
+            <p class="exp">
+            I worked in a team of three to build a custom compiler that converts 
+            program source code to executable machine code. This compiler uses
+            an incremental nanopass approach, where each pass is shown in the figure
+            below. The compiler is able to parse variables, arithmetic, conditionals,
+            tuples, loops, basic functions, and lexically-scoped functions. We also 
+            implemented register allocation via graph coloring and garbage collection.
+            </p>
+        </div>
+
+        <div class="github-box">
+            <img src="github.png" class="github-image">
+            <a href="https://github.com/tamisoyebo/cs164_arnauld_martinez_tami_soyebo/tree/main">Github Link</a>
+        </div>
+
+    </div>
+
+    <div class="project-1">
+        <div class="project-desc">
+            <h2>Robotic Arm</h2>
+            <h2 class="year">2024</h2>
+        </div>
+
+        <div class="robot-demo-container">
+            <div class="robot-video-container">
+                <video controls class="robot-video">
+                    <source src="robotics_video.mp4" type="video/mp4">
+                </video>
+                <h2>Demonstration of continuous joint movement <br> where the sword
+                    hits falling fruit.
+                </h2>
+            </div>
+
+            <div class="robot-diagram-container">
+                <img src="robot_arm.png" class="robot-arm">
+                <h2>Joint locations in the custom robot arm</h2>
+            </div>
+        </div>
+
+        <div class="project-exp">
+            <p class="exp">
+                During the fall term, I worked in a team of five to create a
+                machine learning model that autonomously controls and races a
+                Formula 1 car. Our benchmark was the soft actor-critic (SAC) learning 
+                algorithm used in Trackmania's RoboRace League. The learning curve
+                for the model is shown in red in the above figure.
+            </p>
+            <p class="exp">
+                In SAC, the actor learns to control the racecar while the agent 
+                gives the actor some environmental reward. We created an
+                asymmetric soft-actor critic algorithm, where the actor is provided
+                a history of images taken using an on-board camera, while the critic
+                has access to privileged state information. This eliminates the
+                racecar's dependence on GPS, which is a limiting factor for high-speed
+                autonomous cars. The model results are shown in blue.
+            </p>
+            <p class="exp">
+                Additionally, we utilized DINO to segment on-board images before
+                the agent processes them. This provides rich semantic data (such as depth or
+                velocity) to the actor, and enables the model to make better driving choices.
+                This model outperformed the SOTA SAC model, as shown in green.
+            </p>
+        </div>
+
+        <div class="github-box">
+            <!-- <img src="github.png" class="github-image">
+            <a href="https://github.com/tamisoyebo/cs164_arnauld_martinez_tami_soyebo/tree/main">Github Link</a> -->
+        </div>
+
+    </div>
+
+    <!-- <div class="project-2">
+        <h2>Physics Engine</h2>
+    </div> -->
+
   </main>
 </body> 
 </html>
