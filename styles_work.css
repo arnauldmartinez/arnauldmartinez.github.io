@@ -1,0 +1,8 @@
+body {
+    background-image: url('resources/launch.jpg'); /* Adjust the path if needed */
+    background-size: cover;       /* Make image cover the entire page */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Optional: for parallax effect */
+    color: white;                 /* Optional: ensures text is readable */
+  }

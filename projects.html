@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Arnauld Martinez Portfolio</title>
+  <link rel="stylesheet" href="styles_research.css"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-left">
+                    <a href="index.html" class="nav-logo">Arnauld Martinez</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="work.html" class="nav-link">Work Experience</a>
+                    <a href="projects.html" class="nav-link active">Projects</a>
+                    <a href="resume.pdf" class="nav-link">CV</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+  <main>
+    <div class="main-container">
+        <section class="research-entry">
+            <h2>Soft Actor Critic for Autonomous Driving</h2>
+            <p class="research-meta">
+                <span class="right-meta">2025</span>
+            </p>
+            <div class="project-images">
+                <img src="resources/work/actor.png" class="satellite-img">
+                <video width="320" height="240" controls>
+                    <source src="resources/work/autonomous_driving.mp4" type="video/mp4">
+                </video>
+            </div>
+            <p class="research-text">
+                I worked in a team of five students to create a vision-based model that autonomously
+                controls and races a Formula 1 car. We developed an asymmetric Soft Actor-Critic (SAC)
+                model, where the actor (computer) is provided a history of images taken using an on-board
+                camera, while the critic (ground truth) is provided this history and car state information.
+                By training the actor to use only an image timeseries, we eliminate the need for unreliable
+                GPS state information, a common issue for teams competing in the Indy Autonomous Challenge. 
+                <br>
+                <br>
+                We also incorporated DINO and YOLOv8 visual processing to parse semantic information from
+                the on-board camera. Our final model beat 95% of human drivers in Trackmania simulations.
+            </p>
+        </section>
+
+        <hr class="divider-line">
+
+        <section class="research-entry">
+            <h2>Chess Robot</h2>
+            <p class="research-meta">
+                <span class="right-meta">2025</span>
+              </p>
+            <div class="project-images">
+                <img src="resources/work/robot_arm.png" class="satellite-img">
+                <video width="320" height="240" controls>
+                    <source src="resources/work/new_vid.mp4" type="video/mp4">
+                </video>
+            </div>
+            <p class="research-text">
+                I worked in a team of three students to build an autonomous robot arm 
+                capable of playing chess against human players in real time. The arm contains
+                custom links and an end effector designed to reliably pick up chess pieces on
+                FIDE-rated chess boards. We developed models to compute inverse kinematics
+                and reliably parse images of the chess board. We also integrated an open-source
+                chess engine to determine the best move. This engined is rated 3200, capable of
+                beating the best players in the world such as Magnus Carlsen. 
+                <br>
+                <br>
+                Additionally, the robot arm is capable of recovering from various failure modes. 
+                The robot will move fallen pieces off the board, use a different set of inverse
+                kinematics if the original solution failed to pick up the correct piece, and will
+                alert the user if they played an illegal move. This work was featured on Caltech's
+                instagram page!
+            </p>
+        </section>
+
+        <hr class="divider-line">
+
+        <section class="research-entry">
+            <h2>Custom x86 Compiler</h2>
+            <p class="research-meta">
+                <span class="right-meta">2024</span>
+              </p>
+            <p class="research-text">
+                I worked in a team of three students to buil a custom x86 compiler that converts
+                source code to executable assembly. This compiler uses an incremental nanopass approach,
+                where each pass converts the source code to a language closer to assembly. The compiler
+                is able to parse variables, arithmetic, conditionals, tuples, loops, basic functions,
+                and lexically-scoped functions. We also implemented register allocation via graph coloring
+                and garbage collection.
+            </p>
+            <div class="code-container">
+                <div class="code-box">
+                  <h3>Source Code</h3>
+                  <pre><code>
+    (define (sum (x : Integer)) : Integer
+    (let (x-vec (vector x))
+        (let (one (vector 1))
+        (let (neg-one (vector (- 1)))
+            (if (= (vector-ref x-vec 0) 1)
+                (vector-ref one 0)
+                (+ x (sum (+ x (vector-ref neg-one 0)))))))))
+
+    (if (= (sum 3) 6)
+        42
+        777)
+                  </code></pre>
+                </div>
+              
+                <div class="code-box">
+                  <h3>Assembly</h3>
+                  <pre><code>
+    _block_1:
+        movq $42, %rax
+        jmp _main_conclusion
+
+    _block_2:
+        movq $777, %rax
+        jmp _main_conclusion
+
+    _main_start:
+        leaq _sum(%rip), %rcx
+        movq $3, %rdi
+        callq *%rcx
+        movq %rax, %rcx
+        cmpq $6, %rcx
+        je _block_1
+        jmp _block_2
+
+        .globl _main
+        .align 8
+
+    _main:
+        pushq %rbp
+        movq %rsp, %rbp
+        movq $65536, %rdi
+        movq $65536, %rsi
+        callq _initialize
+        movq _rootstack_begin(%rip), %r15
+        jmp _main_start
+
+    _main_conclusion:
+        popq %rbp
+        retq
+
+    _block_10:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_8
+
+    _block_11:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq %r14, 8(%r11)
+        movq $0, %rcx
+        movq %rdx, %r13
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_9
+        jmp _block_10
+
+    _block_12:
+        movq $0, %rcx
+        jmp _block_11
+
+    _block_13:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_11
+
+    _block_3:
+        movq %r12, %r11
+        movq 8(%r11), %rax
+        jmp _sum_conclusion
+
+    _block_4:
+        leaq _sum(%rip), %rsi
+        movq %rdx, %r11
+        movq 8(%r11), %rcx
+        movq %r14, %rdx
+        addq %rcx, %rdx
+        movq %rdx, %rdi
+        callq *%rsi
+        movq %rax, %rcx
+        movq %r14, %rax
+        addq %rcx, %rax
+        jmp _sum_conclusion
+
+    _block_5:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq %rbx, 8(%r11)
+        movq $0, %rcx
+        movq %r13, %r11
+        movq 8(%r11), %rcx
+        cmpq $1, %rcx
+        je _block_3
+        jmp _block_4
+
+    _block_6:
+        movq $0, %rcx
+        jmp _block_5
+
+    _block_7:
+        movq %r15, %rdi
+        movq $16, %rsi
+        callq _collect
+        jmp _block_5
+
+    _block_8:
+        movq _free_ptr(%rip), %r11
+        addq $16, _free_ptr(%rip)
+        movq $3, 0(%r11)
+        movq %r11, %rdx
+        movq $1, 8(%r11)
+        movq $0, %rcx
+        movq %rdx, %r12
+        movq $1, %rbx
+        negq %rbx
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_6
+        jmp _block_7
+
+    _block_9:
+        movq $0, %rcx
+        jmp _block_8
+
+    _sum_start:
+        movq %rdi, %r14
+        movq _free_ptr(%rip), %rcx
+        addq $16, %rcx
+        movq _fromspace_end(%rip), %rdx
+        cmpq %rdx, %rcx
+        jl _block_12
+        jmp _block_13
+
+        .globl _sum
+        .align 8
+
+    _sum:
+        pushq %rbp
+        movq %rsp, %rbp
+        pushq %rbx
+        pushq %r12
+        pushq %r13
+        pushq %r14
+        jmp _sum_start
+
+    _sum_conclusion:
+        popq %r14
+        popq %r13
+        popq %r12
+        popq %rbx
+        popq %rbp
+        retq
+                  </code></pre>
+                </div>
+              </div>
+        </section>
+
+    </div>
+
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Arnauld Martinez. All rights reserved.</p>
+  </footer>
+  
+</body> 
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Arnauld Martinez Portfolio</title>
+  <link rel="stylesheet" href="styles_research.css"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles_work.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-left">
+                    <a href="index.html" class="nav-logo">Arnauld Martinez</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="research.html" class="nav-link">Research</a>
+                    <a href="work.html" class="nav-link active">Work Experience</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="resume.pdf" class="nav-link">CV</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+  <main>
+    <div class="main-container">
+        <section class="research-entry">
+            <h2>Guidance, Navigation, and Control Intern, SpaceX</h2>
+            <p class="research-meta">
+                <span class="left-meta">Mr. Andrew Eckart, Dr. Andy Bohn | Redmond, WA</span>
+                <span class="right-meta">June 2025 – September 2025</span>
+              </p>
+            <p class="research-text">
+                I am currently working under Dr. Bohn and Mr. Eckart to make Starlink satellites
+                available for user service during severe solar storms.
+            </p>
+        </section>
+
+        <hr class="divider-line">
+
+        <section class="research-entry">
+            <h2>Guidance, Navigation, and Control Intern, SpaceX</h2>
+            <p class="research-meta">
+                <span class="left-meta">Mr. James Dearman, Dr. Jon Herman | Redmond, WA</span>
+                <span class="right-meta">June 2024 – September 2024</span>
+              </p>
+            <p class="research-text">
+                I worked under Dr. Herman and Mr. Dearman to build a physics simulation that 
+                captures the physical state of the entire Starlink satellite fleet. I built
+                and optimized the simulation in C++ and fetched/serialized real time telemetry
+                data in Python. I integrated custom rk4 solvers that propagate the ephemeride 
+                states' of the satellites forward, accurate to ~2 weeks. I also developed models
+                for on-board batteries and antennae, with the ability to bootstrap to a future
+                time and simulate various failure modes.
+            </p>
+        </section>
+
+    </div>
+
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Arnauld Martinez. All rights reserved.</p>
+  </footer>
+  
+</body> 
+</html>

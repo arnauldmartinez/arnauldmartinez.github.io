@@ -1,0 +1,99 @@
+.section-title {
+    font-size: 28pt;
+    color: rgb(230, 230, 230);
+    margin-bottom: 10px;
+    font-family: 'Lato', Arial;
+    text-align: center;     /* align text to left */
+    width: 100%;          /* span full container width */
+  }
+  
+  .section-intro {
+    font-size: 14pt;
+    color: rgb(200, 200, 200);
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .research-entry {
+    margin-bottom: 50px;
+  }
+  
+  .research-entry h2 {
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .research-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #999;
+    font-size: 12pt;
+    margin-bottom: 10px;
+    font-family: 'Lato', Arial;
+  }
+
+  .research-text {
+    color:rgb(230, 230, 230);
+    line-height: 1.6;
+  }
+  
+  .divider-line {
+    border: none;
+    border-top: 2px solid darkslategray;
+    margin: 120px 0; /* space above and below the line */
+    width: 80%; /* or 100% if you want full width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .research-images {
+    display: flex;
+    justify-content: center;   /* center the images horizontally */
+    align-items: center;       /* align images vertically if different heights */
+    gap: 20px;                 /* spacing between images */
+    margin: 20px 0;
+    flex-wrap: wrap;           /* optional: wraps on smaller screens */
+  }
+
+  .project-images {
+    display: flex;
+    justify-content: center;   /* center the images horizontally */
+    align-items: center;       /* align images vertically if different heights */
+    gap: 20px;                 /* spacing between images */
+    margin: 20px 0;
+    flex-wrap: wrap;           /* optional: wraps on smaller screens */
+  }
+  
+  .satellite-img {
+    height: 200px;             /* fixed height */
+    width: auto;               /* keeps aspect ratio */
+    border-radius: 8px;        /* optional: rounded corners */
+    object-fit: contain;       /* keeps image inside bounds cleanly */
+  }
+
+.code-container {
+  display: flex;
+  justify-content: center;     /* center the whole row */
+  gap: 40px;                   /* space between the boxes */
+  margin-top: 30px;
+  flex-wrap: wrap;             /* stack on small screens */
+}
+
+.code-box {
+  background-color: rgb(21, 21, 21);      /* dark background for code */
+  color: #eee;                 /* light text */
+  width: 400px;                /* fixed width */
+  height: 300px;               /* fixed height */
+  overflow: auto;              /* scroll if content overflows */
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.code-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #ffcc00;
+}
